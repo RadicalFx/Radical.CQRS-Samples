@@ -1,15 +1,12 @@
 ﻿using Radical.CQRS.Data;
 using Sample.Domain.Companies;
 using Sample.Domain.People;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.Entity.ModelConfiguration.Configuration;
 using Topics.Radical.Helpers;
 
 namespace Sample.Domain
 {
-	public class SampleDomainContext : DomainContext
+    public class SampleDomainContext : DomainContext
 	{
 		protected override void OnModelCreating( DbModelBuilder modelBuilder )
 		{

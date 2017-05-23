@@ -6,18 +6,11 @@ using Castle.Windsor;
 using NHibernate;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
-using NHibernate.Cfg;
 using NHibernate.Tool.hbm2ddl;
-using FluentNHibernate.Conventions.Helpers;
-using Sample.Domain.People;
-using FluentNHibernate.Automapping;
-using Sample.Domain.Data.Maps;
-using Radical.CQRS;
-using FluentNHibernate;
 
 namespace Sample.Domain.Data.Boot.Installers
 {
-	[Export( typeof( IWindsorInstaller ) )]
+    [Export( typeof( IWindsorInstaller ) )]
 	public class NHibernateInstaller : IWindsorInstaller
 	{
 		public void Install( IWindsorContainer container, IConfigurationStore store )
