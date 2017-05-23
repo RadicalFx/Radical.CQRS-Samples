@@ -80,8 +80,8 @@
       <HintPath>..\..\..\..\packages\Radical.CQRS.0.2.0-unstable0028\lib\net45\Radical.CQRS.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Radical.CQRS.Client, Version=0.1.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\Radical.CQRS.Client.0.1.1-RC1\lib\net45\Radical.CQRS.Client.dll</HintPath>
+    <Reference Include="Radical.CQRS.Client, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Radical.CQRS.Client.0.2.0-unstable0011\lib\net45\Radical.CQRS.Client.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Radical.Windows, Version=1.6.1.0, Culture=neutral, processorArchitecture=MSIL">
