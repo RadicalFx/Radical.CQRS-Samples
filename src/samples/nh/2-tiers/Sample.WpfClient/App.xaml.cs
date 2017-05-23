@@ -1,14 +1,14 @@
-﻿using System.Windows;
-using Sample.WpfClient.Presentation;
-using Topics.Radical.Windows.Presentation.Boot;
+﻿using Sample.WpfClient.Presentation;
 using System.Net;
+using System.Windows;
+using Topics.Radical.Windows.Presentation.Boot;
 
 namespace Sample.WpfClient
 {
-	/// <summary>
-	/// Interaction logic for App.xaml
-	/// </summary>
-	public partial class App : Application
+    /// <summary>
+    /// Interaction logic for App.xaml
+    /// </summary>
+    public partial class App : Application
 	{
 		public App()
 		{

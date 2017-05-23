@@ -2,8 +2,8 @@
 
 namespace Sample.Messages.Commands
 {
-	public class TouchPerson
-	{
-		public Guid Id { get; set; }
-	}
+    public class TouchPerson
+    {
+        public Guid Id { get; set; }
+    }
 }

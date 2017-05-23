@@ -8,42 +8,42 @@ using System.ComponentModel.Composition;
 
 namespace Sample.ViewModels.Boot.Installers
 {
-	[Export( typeof( IWindsorInstaller ) )]
-	public class NHibernateInstaller : IWindsorInstaller
-	{
-		public void Install( IWindsorContainer container, IConfigurationStore store )
-		{
-			container.Register
-			(
-				Component.For<ISessionFactory>()
-					.Named( "ViewModelsSessionFactory" )
-					.UsingFactoryMethod( x => CreateSessionFactory() ) 
-			);
+    [Export( typeof( IWindsorInstaller ) )]
+    public class NHibernateInstaller : IWindsorInstaller
+    {
+        public void Install( IWindsorContainer container, IConfigurationStore store )
+        {
+            container.Register
+            (
+                Component.For<ISessionFactory>()
+                    .Named( "ViewModelsSessionFactory" )
+                    .UsingFactoryMethod( x => CreateSessionFactory() ) 
+            );
 
-			container.Register
-			(
-				Component.For<IStatelessSession>()
-					.UsingFactoryMethod( x => 
-					{
-						var factory = container.Resolve<ISessionFactory>( "ViewModelsSessionFactory" );
-						return factory.OpenStatelessSession();
-					} )
-					.LifestyleTransient()
-			);
-		}
+            container.Register
+            (
+                Component.For<IStatelessSession>()
+                    .UsingFactoryMethod( x => 
+                    {
+                        var factory = container.Resolve<ISessionFactory>( "ViewModelsSessionFactory" );
+                        return factory.OpenStatelessSession();
+                    } )
+                    .LifestyleTransient()
+            );
+        }
 
-		static ISessionFactory CreateSessionFactory()
-		{
-			return Fluently.Configure()
-				.Database
-				( 
-					MsSqlConfiguration.MsSql2012.ConnectionString( c => c.FromConnectionStringWithKey( "SampleViewModels" ) ) 
-				)
-				.Mappings( m =>
-				{
-					m.FluentMappings.AddFromAssemblyOf<NHibernateInstaller>();
-				} )
-				.BuildSessionFactory();
-		}
-	}
+        static ISessionFactory CreateSessionFactory()
+        {
+            return Fluently.Configure()
+                .Database
+                ( 
+                    MsSqlConfiguration.MsSql2012.ConnectionString( c => c.FromConnectionStringWithKey( "SampleViewModels" ) ) 
+                )
+                .Mappings( m =>
+                {
+                    m.FluentMappings.AddFromAssemblyOf<NHibernateInstaller>();
+                } )
+                .BuildSessionFactory();
+        }
+    }
 }

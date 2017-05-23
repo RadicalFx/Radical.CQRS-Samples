@@ -1,18 +1,17 @@
-using System;
-using System.Configuration;
-using System.ServiceProcess;
-using System.Web.OData.Builder;
-using System.Web.OData.Extensions;
 using Microsoft.Owin.Cors;
 using Owin;
 using Radical.Bootstrapper;
 using Radical.CQRS.Server;
 using Sample.ViewModels;
-using Microsoft.AspNet.SignalR;
+using System;
+using System.Configuration;
+using System.ServiceProcess;
+using System.Web.OData.Builder;
+using System.Web.OData.Extensions;
 
 namespace Sample.Server
 {
-	class ProgramService : ServiceBase
+    class ProgramService : ServiceBase
 	{
 		ServerHost _server = null;
 

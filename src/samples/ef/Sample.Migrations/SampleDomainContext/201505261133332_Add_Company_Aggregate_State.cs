@@ -1,8 +1,7 @@
 namespace Sample.Migrations.SampleDomainContext
 {
-    using System;
     using System.Data.Entity.Migrations;
-    
+
     public partial class Add_Company_Aggregate_State : DbMigration
     {
         public override void Up()

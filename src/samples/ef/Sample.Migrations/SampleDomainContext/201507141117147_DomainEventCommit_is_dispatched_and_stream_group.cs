@@ -1,6 +1,5 @@
 namespace Sample.Migrations.SampleDomainContext
 {
-    using System;
     using System.Data.Entity.Migrations;
 
     public partial class DomainEventCommit_is_dispatched_and_stream_group : DbMigration

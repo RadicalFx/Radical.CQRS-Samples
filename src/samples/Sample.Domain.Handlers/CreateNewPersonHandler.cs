@@ -1,26 +1,25 @@
-﻿using System;
-using Jason.Handlers.Commands;
+﻿using Jason.Handlers.Commands;
 using Radical.CQRS;
 using Sample.Domain.People;
 using Sample.Messages.Commands;
 
 namespace Sample.Domain.Handlers
 {
-	class CreateNewPersonHandler : AbstractCommandHandler<CreateNewPerson>
-	{
-		public IRepositoryFactory RepositoryFactory { get; set; }
-		
-		protected override object OnExecute( CreateNewPerson command )
-		{
-			using( var repository = RepositoryFactory.OpenSession() )
-			{
-				var aPerson = Person.CreateNew( command.Name );
+    class CreateNewPersonHandler : AbstractCommandHandler<CreateNewPerson>
+    {
+        public IRepositoryFactory RepositoryFactory { get; set; }
+        
+        protected override object OnExecute( CreateNewPerson command )
+        {
+            using( var repository = RepositoryFactory.OpenSession() )
+            {
+                var aPerson = Person.CreateNew( command.Name );
 
-				repository.Add( aPerson );
-				repository.CommitChanges();
+                repository.Add( aPerson );
+                repository.CommitChanges();
 
-				return aPerson.Id;
-			}
-		}
-	}
+                return aPerson.Id;
+            }
+        }
+    }
 }

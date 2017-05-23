@@ -1,59 +1,59 @@
-﻿using System.ComponentModel.Composition;
-using System.Configuration;
-using Castle.MicroKernel.Registration;
+﻿using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
-using NHibernate;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
+using NHibernate;
 using NHibernate.Tool.hbm2ddl;
+using System.ComponentModel.Composition;
+using System.Configuration;
 
 namespace Sample.Domain.Data.Boot.Installers
 {
     [Export( typeof( IWindsorInstaller ) )]
-	public class NHibernateInstaller : IWindsorInstaller
-	{
-		public void Install( IWindsorContainer container, IConfigurationStore store )
-		{
-			container.Register( Component.For<ISessionFactory>()
-				.UsingFactoryMethod( x => CreateSessionFactory() ) );
-		}
+    public class NHibernateInstaller : IWindsorInstaller
+    {
+        public void Install( IWindsorContainer container, IConfigurationStore store )
+        {
+            container.Register( Component.For<ISessionFactory>()
+                .UsingFactoryMethod( x => CreateSessionFactory() ) );
+        }
 
-		static ISessionFactory CreateSessionFactory()
-		{
-			//var domain = new DomainConfiguration();
+        static ISessionFactory CreateSessionFactory()
+        {
+            //var domain = new DomainConfiguration();
 
-			return Fluently.Configure()
-				.Database( MsSqlConfiguration.MsSql2012
-								.ConnectionString( c => c.FromConnectionStringWithKey( "SampleDomain" ) ) )
-				.Mappings( m =>
-				{
-					//m.AutoMappings.Add( AutoMap.AssemblyOf<Person>( domain )
-					//	.Override<IAggregate>( map =>
-					//	{
-					//		map.IgnoreProperty( a => a.IsChanged );
-					//		map.Map( Reveal.Member<IAggregate>( "RowVersion" ) )
-					//			.CustomSqlType( "timestamp" );
-					//	} ) );
-					//m.FluentMappings.Conventions.Add( DefaultLazy.Never() );
-					m.FluentMappings.AddFromAssemblyOf<NHibernateInstaller>();
-				} )
-				//.CurrentSessionContext( "web" )
-				.ExposeConfiguration( BuildSchema )
-				.BuildSessionFactory();
-		}
+            return Fluently.Configure()
+                .Database( MsSqlConfiguration.MsSql2012
+                                .ConnectionString( c => c.FromConnectionStringWithKey( "SampleDomain" ) ) )
+                .Mappings( m =>
+                {
+                    //m.AutoMappings.Add( AutoMap.AssemblyOf<Person>( domain )
+                    //	.Override<IAggregate>( map =>
+                    //	{
+                    //		map.IgnoreProperty( a => a.IsChanged );
+                    //		map.Map( Reveal.Member<IAggregate>( "RowVersion" ) )
+                    //			.CustomSqlType( "timestamp" );
+                    //	} ) );
+                    //m.FluentMappings.Conventions.Add( DefaultLazy.Never() );
+                    m.FluentMappings.AddFromAssemblyOf<NHibernateInstaller>();
+                } )
+                //.CurrentSessionContext( "web" )
+                .ExposeConfiguration( BuildSchema )
+                .BuildSessionFactory();
+        }
 
-		static void BuildSchema( NHibernate.Cfg.Configuration config )
-		{
-			var buildSchema = ConfigurationManager.AppSettings[ "NHibernate/BuildSchema" ];
-			bool build = false;
-			bool.TryParse( buildSchema, out build );
+        static void BuildSchema( NHibernate.Cfg.Configuration config )
+        {
+            var buildSchema = ConfigurationManager.AppSettings[ "NHibernate/BuildSchema" ];
+            bool build = false;
+            bool.TryParse( buildSchema, out build );
 
-			if( build )
-			{
-				new SchemaExport( config )
-				  .Create( false, true );
-			}
-		}
-	}
+            if( build )
+            {
+                new SchemaExport( config )
+                  .Create( false, true );
+            }
+        }
+    }
 }

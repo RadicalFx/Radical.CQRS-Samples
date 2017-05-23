@@ -1,8 +1,7 @@
 namespace Sample.Migrations.SampleDomainContext
 {
-    using System;
     using System.Data.Entity.Migrations;
-    
+
     public partial class People_BornDate_When_to_DateTimeOffset : DbMigration
     {
         public override void Up()

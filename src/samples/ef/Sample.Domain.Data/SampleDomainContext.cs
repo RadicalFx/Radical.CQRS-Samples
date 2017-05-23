@@ -7,34 +7,34 @@ using Topics.Radical.Helpers;
 namespace Sample.Domain
 {
     public class SampleDomainContext : DomainContext
-	{
-		protected override void OnModelCreating( DbModelBuilder modelBuilder )
-		{
-			base.OnModelCreating( modelBuilder );
+    {
+        protected override void OnModelCreating( DbModelBuilder modelBuilder )
+        {
+            base.OnModelCreating( modelBuilder );
 
-			modelBuilder.Entity<Address>()
-					.ToTable( "dbo.PersonAddresses" );
-			modelBuilder.MapPropertiesOf<Address>();
+            modelBuilder.Entity<Address>()
+                    .ToTable( "dbo.PersonAddresses" );
+            modelBuilder.MapPropertiesOf<Address>();
 
-			modelBuilder.ComplexType<BornInfo>();
+            modelBuilder.ComplexType<BornInfo>();
 
-			var person = modelBuilder.Entity<Person>();
-			person.HasMany( p => p.Addresses )
-				.WithOptional()
-				.HasForeignKey( a => a.PersonId )
-				.WillCascadeOnDelete();
+            var person = modelBuilder.Entity<Person>();
+            person.HasMany( p => p.Addresses )
+                .WithOptional()
+                .HasForeignKey( a => a.PersonId )
+                .WillCascadeOnDelete();
 
-			modelBuilder.MapPropertiesOf<Person>(
+            modelBuilder.MapPropertiesOf<Person>(
 
-				propertiesToSkip: new[] 
-				{
-					ReflectionHelper.GetPropertyName<Person>( p => p.Info ), 
-					ReflectionHelper.GetPropertyName<Person>( p => p.Addresses ) 
-				} );
+                propertiesToSkip: new[] 
+                {
+                    ReflectionHelper.GetPropertyName<Person>( p => p.Info ), 
+                    ReflectionHelper.GetPropertyName<Person>( p => p.Addresses ) 
+                } );
 
-			var companyState = modelBuilder.Entity<Company.State>()
-				.ToTable( "Companies" );
-			modelBuilder.MapPropertiesOf<Company.State>();
-		}
-	}
+            var companyState = modelBuilder.Entity<Company.State>()
+                .ToTable( "Companies" );
+            modelBuilder.MapPropertiesOf<Company.State>();
+        }
+    }
 }

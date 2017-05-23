@@ -1,9 +1,9 @@
 ﻿using Radical.CQRS;
+using Radical.CQRS.Data;
 using Sample.Domain.People;
 using System.Collections.Generic;
-using System.Linq;
 using System.Data.Entity;
-using Radical.CQRS.Data;
+using System.Linq;
 
 namespace Sample.Domain.Services
 {

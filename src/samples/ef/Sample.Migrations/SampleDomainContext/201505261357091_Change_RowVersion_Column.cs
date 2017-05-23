@@ -1,8 +1,7 @@
 namespace Sample.Migrations.SampleDomainContext
 {
-    using System;
     using System.Data.Entity.Migrations;
-    
+
     public partial class Change_RowVersion_Column : DbMigration
     {
         public override void Up()
